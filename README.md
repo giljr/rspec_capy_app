@@ -1,24 +1,100 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# rspec_capy_app
 
-Things you may want to cover:
+Rails 7 + RSpec + Capybara + Devise + Solargraph setup
+Alias: br
 
-* Ruby version
+### 🎬 Get started
+```bash
+git clone https://github.com/giljr/rspec_capy_app.git
+cd rspec_capy_app
+```
+### 🧰 Prerequisites
+```
+Ruby 3.4.7
 
-* System dependencies
+Rails 8.1.1
 
-* Configuration
+Editor with Solargraph support (for IDE/VSCode)
+```
+### ✅ Setup
 
-* Database creation
+Install gems:
+```ruby
+bundle install
+```
 
-* Database initialization
+Prepare the database:
+```ruby
+bin/rails db:create db:migrate
+```
 
-* How to run the test suite
+Run Solargraph (for code‑navigation, autocomplete):
+```
+bundle exec solargraph scan
+```
+### 🧪 Testing
 
-* Services (job queues, cache servers, search engines, etc.)
+Use RSpec + Capybara system/feature specs:
+```ruby
+bundle exec rspec
+```
+or   (after run `bundle binstubs rspec-core`):
+```
+bin/rspec
+```
 
-* Deployment instructions
+You will find example tests under spec/ demonstrating:
+```
+Authentication flows with Devise
 
-* ...
+System tests using Capybara to simulate user interactions
+
+Model/controller specs with RSpec
+```
+### 🔧 Alias “br”
+
+This project defines a shell alias br (for example: br rspec) for convenience. Add the following to your shell profile (~/.bashrc, ~/.zshrc):
+```
+alias br='bin/rspec' or 'bundle exec rails'
+```
+
+Then you can run:
+```
+br 
+br spec/models/post_spec.rb
+br spec/requests/posts_spec.rb -fd
+```
+
+### 📚 Why this stack?
+```
+Devise simplifies authentication in Rails apps.
+
+RSpec is the de‑facto testing framework in modern Rails apps. 
+
+Capybara allows writing high‑level specs that simulate real user behavior in browser‑style tests. 
+
+Solargraph enhances developer productivity by providing code‑completion, inline documentation, and static analysis in Ruby projects.
+```
+Combining these gives you a robust foundation: a Rails app that is well‑tested, maintainable, and developer‑friendly.
+
+### 🧭 Structure overview
+```
+app/
+spec/           ← RSpec + Capybara tests  
+config/
+...
+
+spec/models, spec/controllers, spec/system etc.
+```
+Devise setup in `app/models/user.rb` and configuration in `config/initializers/devise.rb`
+
+Solargraph configuration is under `.solargraph.yml`
+
+### 🤝 Contributing
+
+Feel free to fork, open issues or pull requests. Keep your additions aligned with the tutorial’s goal: clear, maintainable Rails + Test + Tooling setup.
+
+### 📄 License
+
+This project is open‑source—use it freely in your own tutorials or apps.
