@@ -1,0 +1,60 @@
+# Solargraph configuration for Rails + RSpec + Capybara + FactoryBot
+# ---------------------------------------------------------------
+
+reporters:
+  - rubocop
+
+require:
+  # Rails core components
+  - active_record
+  - action_controller
+  - action_view
+  - action_mailer
+  - action_cable/engine
+
+  # RSpec testing framework
+  - rspec/core
+  - rspec/expectations
+  - rspec/mocks
+  - rspec/rails
+
+  # Capybara integration
+  - capybara/rspec
+
+  # FactoryBot
+  - factory_bot_rails
+
+plugins: []
+
+include:
+  # Include all ruby files
+  - "**/*.rb"
+
+  # Include Rails templates
+  - "**/*.erb"
+  - "**/*.haml"
+  - "**/*.slim"
+
+  # Include rake tasks
+  - "**/*.rake"
+
+exclude:
+  # Ignore test output folders
+  - "tmp/**/*"
+  - "vendor/**/*"
+
+  # Ignore compiled assets
+  - "public/assets/**/*"
+
+  # Ignore spec files so Solargraph won't try to document your test suite
+  # (avoids slow indexing)
+  - spec/**/*_spec.rb
+
+# Use Bundler to manage gem dependencies for Solargraph
+bundle: true
+
+# Allow type inference and autocomplete for Rails conventions
+rails: true
+
+# Mapping for workspace folders
+workspace_folders: true
