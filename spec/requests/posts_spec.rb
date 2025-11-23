@@ -16,34 +16,46 @@ RSpec.describe "/posts", type: :request do
   include Warden::Test::Helpers
   Warden.test_mode!
 
-  let(:current_user) { User.create!(email: "test@test.com", password: "password", password_confirmation: "password") }
+  let(:current_user) { create(:user) }
+  # let(:current_user) { User.create!(email: "test@test.com", password: "password", password_confirmation: "password") }
 
   # Sign in the user before each request
   before { login_as(current_user, scope: :user) }
   after { Warden.test_reset! }
 
-
   let(:valid_attributes) do
-    {
-      title: "My First Post",
-      body: "This is the content of my post"
-      # NO user_id here -> test will set it manually
-    }
+    attributes_for(:post).except(:user)
   end
+
+  # let(:valid_attributes) do
+  #   {
+  #     title: "My First Post",
+  #     body: "This is the content of my post"
+  #     # NO user_id here -> test will set it manually
+  #   }
+  # end
 
   let(:invalid_attributes) do
-    {
-      title: nil,       # title required
-      body: nil         # content required
-    }
+    attributes_for(:post, title: nil, body: nil).except(:user)
   end
 
+  # let(:invalid_attributes) do
+  #   {
+  #     title: nil,       # title required
+  #     body: nil         # content required
+  #   }
+  # end
+
   let(:new_attributes) do
-    {
-      title: "Updated Title",
-      body: "Updated content"
-    }
+    attributes_for(:post)
   end
+
+  # let(:new_attributes) do
+  #   {
+  #     title: "Updated Title",
+  #     body: "Updated content"
+  #   }
+  # end
 
   describe "GET /index" do
     it "renders a successful response" do

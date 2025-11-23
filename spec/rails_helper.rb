@@ -36,6 +36,18 @@ rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
 RSpec.configure do |config|
+  # For Devise + Warden (feature/system tests)
+  config.include Warden::Test::Helpers, type: :feature
+  config.include Warden::Test::Helpers, type: :system
+
+  # Ensure logout happens after each feature test
+  config.after(type: :feature) do
+    Warden.test_reset!
+  end
+
+  # FactoryBot
+  config.include FactoryBot::Syntax::Methods
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
@@ -44,7 +56,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false

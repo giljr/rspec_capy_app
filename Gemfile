@@ -57,6 +57,14 @@ group :development, :test do
 
   # https://github.com/thoughtbot/shoulda-matchers
   gem "shoulda-matchers", "~> 6.0"
+
+  # Episode 2 - Factories and Fakers
+  gem "factory_bot_rails"
+  gem "faker"
+
+  # Add Capybara
+  gem "capybara"
+  gem "selenium-webdriver", "~> 4.25"
 end
 
 group :development do

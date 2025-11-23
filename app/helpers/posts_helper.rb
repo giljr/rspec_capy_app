@@ -1,6 +1,6 @@
 module PostsHelper
   #
-  # Navegação
+  # Navigation
   #
 
   def visit_posts_homepage
@@ -15,39 +15,48 @@ module PostsHelper
     visit post_path(post)
   end
 
-
   #
-  # Criação de posts
+  # Posts Creation
   #
 
   def create_post_with(title:, body:)
     visit new_post_path
 
     fill_in "Title", with: title
-    fill_in "Body", with: body
+    fill_in "Body",  with: body
 
     click_button "Create Post"
   end
 
+  # Faker use
   def create_minimal_post
-    create_post_with(title: "Test Post", body: "My body text")
+    create_post_with(
+      title: Faker::Book.title,
+      body:  Faker::Lorem.paragraph(sentence_count: 2)
+    )
   end
 
   def create_post_with_views(title:, body:, views:)
     visit new_post_path
 
     fill_in "Title", with: title
-    fill_in "Body", with: body
+    fill_in "Body",  with: body
 
-    # Só inclua essa linha se o campo existir
     fill_in "Views", with: views if page.has_field?("Views")
 
     click_button "Create Post"
   end
 
+  # Complete Post w/ Faker
+  def create_random_post
+    create_post_with(
+      title: Faker::Book.title,
+      body:  Faker::Lorem.paragraph(sentence_count: 3)
+    )
+  end
 
   #
-  # Expectativas
+  # Expectations
   #
 
   def i_should_see_post_title(title)
@@ -66,9 +75,8 @@ module PostsHelper
     expect(page).to have_link("Back to posts", href: posts_path)
   end
 
-
   #
-  # Listagem
+  # Listing
   #
 
   def i_should_see_posts_list
@@ -79,16 +87,15 @@ module PostsHelper
     expect(page).to have_content(title)
   end
 
-
   #
-  # Edição
+  # Editing
   #
 
   def edit_post(post, new_title:, new_body:)
     visit edit_post_path(post)
 
     fill_in "Title", with: new_title
-    fill_in "Body", with: new_body
+    fill_in "Body",  with: new_body
 
     click_button "Update Post"
   end

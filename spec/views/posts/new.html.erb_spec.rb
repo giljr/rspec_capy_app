@@ -1,15 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe "posts/new", type: :view do
-  let(:user) { User.create!(email: "test@test.com", password: "password") }
+  let(:user) { create(:user) }
+  # let(:user) { User.create!(email: "test@test.com", password: "password") }
 
   before(:each) do
-    assign(:post, Post.new(
-      title: "MyString",
-      body: "MyText",
-      user: user,
-      views: 1
-    ))
+    assign(:post, build(:post, user: user))
+    # assign(:post, Post.new(
+    #   title: "MyString",
+    #   body: "MyText",
+    #   user: user,
+    #   views: 1
+    # ))
   end
 
   it "renders new post form" do

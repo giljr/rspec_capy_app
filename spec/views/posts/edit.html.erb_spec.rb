@@ -1,16 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe "posts/edit", type: :view do
-  let(:user) { User.create!(email: "test@test.com", password: "password") }
+  let(:user) { create(:user) }
+  # let(:user) { User.create!(email: "test@test.com", password: "password") }
 
-  let(:post) {
-    Post.create!(
-      title: "MyString",
-      body: "MyText",
-      user: user,
-      views: 1
-    )
-  }
+  let(:post) { create(:post, user: user) }
+  # let(:post) {
+  #   Post.create!(
+  #     title: "MyString",
+  #     body: "MyText",
+  #     user: user,
+  #     views: 1
+  #   )
+  # }
 
   before(:each) do
     assign(:post, post)
