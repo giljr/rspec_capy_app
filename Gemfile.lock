@@ -356,8 +356,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    shoulda-matchers (6.5.0)
-      activesupport (>= 5.2.0)
+    shoulda-matchers (7.0.1)
+      activesupport (>= 7.1)
     solargraph (0.57.0)
       backport (~> 1.2)
       benchmark (~> 0.4)
@@ -477,8 +477,8 @@ DEPENDENCIES
   rails (~> 8.1.1)
   rspec-rails
   rubocop-rails-omakase
-  selenium-webdriver
-  shoulda-matchers (~> 6.0)
+  selenium-webdriver (~> 4.25)
+  shoulda-matchers (~> 7.0)
   solargraph
   solid_cable
   solid_cache

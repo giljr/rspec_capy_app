@@ -56,7 +56,7 @@ group :development, :test do
   gem "rspec-rails"
 
   # https://github.com/thoughtbot/shoulda-matchers
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
 
   # Episode 2 - Factories and Fakers
   gem "factory_bot_rails"
